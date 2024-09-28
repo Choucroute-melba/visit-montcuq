@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="tour-seule" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 57.87 136.1">
+  <defs>
+    <clipPath id="clippath">
+      <rect x="1.17" y="10.87" width="46.43" height="4.72" fill="none"/>
+    </clipPath>
+  </defs>
+  <path d="M54.38.06c-1.07.16-1.12.63-1.17.72-1.19,3.53-1.64,4.13-2.83,7.66h-.34v127.66h7.83V.84c-.46-.88-2.58-.92-3.49-.78Z"/>
+  <path d="M0,8.44v127.66h48.77V8.44H0ZM25.28,31.94h-1.79v-4.84h1.79v4.84ZM43.06,54.74h-5.28v-10.38h0s0,0,0,0c0-.99,1.18-3.06,2.64-3.06s2.63,2.07,2.63,3.06c0,0,0,0,0,0h0v10.38Z"/>
+  <g clip-path="url(#clippath)">
+    <g>
+      <rect x="2.68" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="5.69" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="8.71" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="11.72" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="14.74" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="17.76" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="20.77" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="23.79" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="26.8" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="29.82" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="32.83" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="35.85" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="38.86" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="41.88" y="10.87" width=".85" height="1.66" fill="#fff"/>
+      <rect x="44.89" y="10.87" width=".85" height="1.66" fill="#fff"/>
+    </g>
+  </g>
+</svg>
