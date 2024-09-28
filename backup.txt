@@ -1,0 +1,110 @@
+            <div className={"flex flex-row bg-primary-950"}>
+            <FontSelector label="H1 Font" value={h1Font} options={h1Options} onChange={setH1Font} onOptionsChange={setH1Options} />
+            <FontSelector label="P Font" value={pFont} options={pOptions} onChange={setPFont} onOptionsChange={setPOptions} />
+            </div>
+
+
+    const [h1Font, setH1Font] = useState("Corben" as keyof typeof fontList);
+    const [pFont, setPFont] = useState("Averia Serif Libre" as keyof typeof fontList);
+    const [h1Options, setH1Options] = useState({size: 40, weight: 400});
+    const [pOptions, setPOptions] = useState({size: 15, weight: 400});
+
+    const FontSelector = (x: {label: string, value: string, options: {size: number, weight: number},
+        onChange: (e: any) => void,
+        onOptionsChange: (options: {size: number, weight: number}) => void }
+    ) => {
+        return (
+            <div style={{color: 'black'}} className={"flex justify-items-start p-1"}>
+                <select value={x.value} onChange={(e) => x.onChange(e.target.value)}>
+                    {Object.keys(fontList).map((fontKey) => (
+                        <option key={fontKey} value={fontKey}>
+                            {fontKey}
+                        </option>
+                    ))}
+                </select>
+                <input type={"number"} min={100} max={1500} step={100} value={x.options.weight} onChange={(e) => {
+                    x.onOptionsChange({...x.options, weight: parseInt(e.target.value)});
+                }}/>
+                <input type={"number"} min={0} max={900} step={1} value={x.options.size} onChange={
+                    (e) => x.onOptionsChange({...x.options, size: parseInt(e.target.value)})
+                }/>
+            </div>
+        );
+    };
+
+
+
+
+const archivoBlack = Archivo_Black({weight: "400", variable: '--font-archivo-black', preload: false });
+const comfortaa = Comfortaa({ variable: '--font-comfortaa', preload: false });
+const exo2 = Exo_2({ variable: '--font-exo-2', preload: false });
+const exo = Exo({ variable: '--font-exo', preload: false });
+const sofadiOne = Sofadi_One({weight: "400", variable: '--font-sofadi-one', preload: false});
+const kanit = Kanit({weight: "400", variable: '--font-kanit', preload: false });
+const pacifico = Pacifico({weight: "400", variable: '--font-pacifico', preload: false });
+const alfaSlabOne = Alfa_Slab_One({weight: "400", variable: '--font-alfa-slab-one', preload: false });
+const righteous = Righteous({weight: "400", variable: '--font-righteous', preload: false });
+const patuaOne = Patua_One({weight: "400", variable: '--font-patua-one', preload: false });
+const bungee = Bungee({weight: "400", variable: '--font-bungee', preload: false });
+const bangers = Bangers({weight: "400", variable: '--font-bangers', preload: false });
+const bowlbyOne = Bowlby_One({weight: "400", variable: '--font-bowlby-one', preload: false });
+const titanOne = Titan_One({weight: "400", variable: '--font-titan-one', preload: false });
+const unbounded = Unbounded({ variable: '--font-unbounded', preload: false });
+const francoisOne = Francois_One({weight: "400", variable: '--font-francois-one', preload: false });
+const brunoAceSC = Bruno_Ace_SC({weight: "400", variable: '--font-bruno-ace-sc', preload: false });
+const specialElite = Special_Elite({weight: "400", variable: '--font-special-elite', preload: false });
+const fugazOne = Fugaz_One({weight: "400", variable: '--font-fugaz-one', preload: false });
+const viga = Viga({weight: "400", variable: '--font-viga', preload: false });
+const amaranth = Amaranth({weight: "400", variable: '--font-amaranth', preload: false });
+const audiowide = Audiowide({weight: "400", variable: '--font-audiowide', preload: false });
+const ultra = Ultra({weight: "400", variable: '--font-ultra', preload: false });
+const hammersmithOne = Hammersmith_One({weight: "400", variable: '--font-hammersmith-one', preload: false });
+const monoton = Monoton({weight: "400", variable: '--font-monoton', preload: false });
+const carterOne = Carter_One({weight: "400", variable: '--font-carter-one', preload: false });
+const blackHanSans = Black_Han_Sans({weight: "400", variable: '--font-black-han-sans', preload: false });
+const londrinaSolid = Londrina_Solid({weight: "400", variable: '--font-londrina-solid', preload: false });
+const calistoga = Calistoga({weight: "400", variable: '--font-calistoga', preload: false });
+const averiaSerifLibre = Averia_Serif_Libre({weight: "400", variable: '--font-averia-serif-libre', preload: false });
+const petrona = Petrona({ variable: '--font-petrona', preload: false });
+const voltaire = Voltaire({weight: "400", variable: '--font-voltaire', preload: false });
+const daysOne = Days_One({weight: "400", variable: '--font-days-one', preload: false });
+const catamaran = Catamaran({weight: "400", variable: '--font-catamaran', preload: false });
+const corben = Corben({weight: "700", variable: '--font-corben', preload: false})
+
+const fontList = {
+    'archivoBlack': archivoBlack,
+    'Comfortaa': comfortaa,
+    'Exo 2': exo2,
+    'Exo': exo,
+    'Sofadi One': sofadiOne,
+    'Kanit': kanit,
+    'Pacifico': pacifico,
+    'Alfa Slab One': alfaSlabOne,
+    'Righteous': righteous,
+    'Patua One': patuaOne,
+    'Bungee': bungee,
+    'Bangers': bangers,
+    'Bowlby One': bowlbyOne,
+    'Titan One': titanOne,
+    'Unbounded': unbounded,
+    'Francois One': francoisOne,
+    'Bruno Ace SC': brunoAceSC,
+    'Special Elite': specialElite,
+    'Fugaz One': fugazOne,
+    'Viga': viga,
+    'Amaranth': amaranth,
+    'Audiowide': audiowide,
+    'Ultra': ultra,
+    'Hammersmith One': hammersmithOne,
+    'Monoton': monoton,
+    'Carter One': carterOne,
+    'Black Han Sans': blackHanSans,
+    'Londrina Solid': londrinaSolid,
+    'Calistoga': calistoga,
+    'Averia Serif Libre': averiaSerifLibre,
+    'Petrona': petrona,
+    'Voltaire': voltaire,
+    'Days One': daysOne,
+    'Catamaran': catamaran,
+    'Corben': corben
+};
