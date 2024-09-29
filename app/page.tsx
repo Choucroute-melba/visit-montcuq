@@ -139,8 +139,15 @@ export function AnimationPrez({className = ""}) {
                     Montcuq <span className={"bg-mqdimgreen-200 rounded-tr-full rounded-bl-full rounded-tl-lg pl-1 pr-1 mb-3"}>en fête</span>
                 </h1>
                 <div className={"text-mqpink-50 text-md mb-10 lg:w-3/6 w-5/6"}>
-                    <p>Durant toute la saison, le comité des fêtes de Montcuq vous propose un florilège d'animations et d'évènements
-                        dans tout le village. Musique, théâtre, spectacles, gastronomie ou traditions, il y en a pour tous les goûts !
+                    <p>Durant toute la saison, le comité des fêtes de Montcuq vous propose un florilège d'animations et
+                        d'évènements
+                        dans tout le village. Musique, théâtre, spectacles, gastronomie ou traditions, il y en a pour
+                        tous les goûts !
+                    </p>
+                    <p className={"max-md:hidden"}>
+                        Conseils culture : si vous souhaitez vous immerger dans l'ambiance traditionnelle, rendez vous tous les
+                        jeudis en salle des fêtes pour une soirée danse et chants traditionnels tels que La Rirette ou encore
+                        La petite Huguette
                     </p>
                     <p className={'mt-3 w-full flex flex-row justify-end'}>
                         <Link className={"ld ld-mqpink"} href={"#"}>Voir la programmation</Link>
@@ -176,6 +183,10 @@ export function HostingPrez({className = ""}) {
                 <div className={"text-mqaqua-50 text-md mb-10 md:w-3/6 w-5/6"}>
                     <p>Profitez d'une multitude d'hébergement typiques, rustiques ou moderne pour tous les budgets,
                         du camping à l'hôtel 5 étoiles et le tout dans un cadre enchanteur.
+                    </p>
+                    <p className={"max-md:hidden"}>
+                        Évitez toute vois de vous endormir sur la digue, on raconte que des âmes voyageuses peux scrupuleuses
+                        y passent en revenant de Nantes...
                     </p>
                     <p className={'mt-3 w-full flex flex-row justify-end'}>
                         <Link className={"ld ld-mqaqua"} href={"#"}>Réserver</Link>
