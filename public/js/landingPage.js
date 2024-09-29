@@ -108,11 +108,15 @@ showPrez("prez-welcome");
 function onMouseEnterFAB(e) {
     const targetedFab = fabs.find(fab => fab.id === e.target.id);
     showPrez(relatedPrez(targetedFab).id);
+    paused = true;
+    changePlayPauseImg();
 }
 
 function onFabClick(e, fab) {
     const prez = relatedPrez(fab)
     showPrez(prez.id);
+    paused = true;
+    changePlayPauseImg();
     focused = prez;
 }
 
@@ -123,8 +127,6 @@ function showPrez(id) {
         if(prez.id === id) {
             prez.scrollIntoView({behavior: "smooth", block: "end", inline: "start"});
             displayedPrez = prez;
-            paused = true;
-            changePlayPauseImg();
         }
     });
 }
