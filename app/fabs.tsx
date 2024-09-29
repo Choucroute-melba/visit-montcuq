@@ -7,7 +7,7 @@ export default function FabsNav() {
 
     return (
         <div className={"group/discover absolute left-0 h-1/3 w-full z-30"}>
-            <div className={"absolute top-[-40px] left-[43%] z-40"}>
+            <div className={"absolute top-[-40px] left-[49%] max-sm:left-[43%] z-40"}>
                 <FloatingButton label={"Voyage"} reveal={"left"} id={"fab-travel"}
                                 className={`group/c absolute top-0 left-0 origin-center group-hover/discover:circle-1`}>
                     <Image src={"icons/SVG/travel2.svg"} alt={"Icône votage"} height={"60"} width={60}/>
