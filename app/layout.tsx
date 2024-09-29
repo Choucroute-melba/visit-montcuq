@@ -21,8 +21,8 @@ export default function RootLayout({
     <html lang="en" className="h-full w-full overflow-x-hidden">
     <body className="h-full w-full">
     <DebugInfo/>
-    <ul className={"group flex flex-col w-fit h-fit p-2 bg-secondary-600/75 m-1.5 text-secondary-50 rounded-md self-end" +
-        " backdrop-blur-md z-[60] absolute left-0 md:bottom-0 top-1/4"}>
+    <ul className={"group flex flex-col w-fit h-fit p-2 bg-secondary-600/75 m-1.5 text-secondary-50 rounded-md border border-secondary-100 " +
+        "self-end backdrop-blur-md z-[60] absolute left-0 md:bottom-0 top-1/4"}>
       <li className={"flex flex-row my-2 space-x-1 md:hidden"}>
         <img src={"/icons/SVG/options.svg"} className={"h-11 w-10 inline "} alt={"options icons"}/>
       </li>
