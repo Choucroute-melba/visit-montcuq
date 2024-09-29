@@ -22,13 +22,13 @@ export default function Footer() {
                         <p><Link href={""} className={"font-normal"}>Carte interactive</Link></p>
                         <p><Link className={"font-normal"} href={""}>Programme 2024-25</Link></p>
                         <p><Link className={"font-normal"} href={""}>Montcuq Animation</Link></p>
+                        <p><Link className={"font-normal"} href={"https://maps.app.goo.gl/vPC9Nmpgm3ZDi3tn6"}>Office du Tourisme</Link></p>
                     </div>
                     <div className={"ml-10"}>
                         <MQLogoFull className={"mb-16"} bg={"bg-primary-950"}/>
                         <LinkButton href={"/test"}>Testing</LinkButton>
                     </div>
                 </div>
-
 
                 <pre className={"font-bold text-xs text-wrap mt-5"}>
                 Copyright © 2024 Montcuq - visit-montcuq.fr

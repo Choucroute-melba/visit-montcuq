@@ -5,6 +5,7 @@ import Footer from "@/app/components/footer";
 import DebugInfo from "@/app/components/debugInfo";
 import LinkButton from "@/app/components/linkButton";
 import CheckBoxButton from "@/app/components/checkBox";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Voir Montcuq",
@@ -17,15 +18,45 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full w-full">
+    <html lang="en" className="h-full w-full overflow-x-hidden">
     <body className="h-full w-full">
     <DebugInfo/>
-    <ul className={"group flex flex-col w-fit h-fit p-2 bg-secondary-600/75 m-1.5 text-secondary-50 rounded-md self-end backdrop-blur-md z-[60] absolute left-0 md:top-0 top-1/4"}>
-      <li className={"md:hidden"}><img src={"/icons/SVG/options.svg"} className={"h-11 w-10 inline"}/></li>
-      <li className={"p-1 my-2 md:inline hidden group-hover:inline"}><LinkButton href={"/"}>Acceuil</LinkButton></li>
+    <ul className={"group flex flex-col w-fit h-fit p-2 bg-secondary-600/75 m-1.5 text-secondary-50 rounded-md self-end" +
+        " backdrop-blur-md z-[60] absolute left-0 md:bottom-0 top-1/4"}>
+      <li className={"flex flex-row my-2 space-x-1 md:hidden"}>
+        <img src={"/icons/SVG/options.svg"} className={"h-11 w-10 inline "} alt={"options icons"}/>
+      </li>
+      <li className={"flex flex-row my-2 space-x-1 max-md:hidden"}>
+        <LinkButton href={"/#previous"} className={""}>
+          <img className={"h-4 w-4 inline"} src={"/icons/SVG/previous.svg"}/>
+        </LinkButton>
+        <LinkButton href={"/#pause"} className={""}>
+          <img className={"h-4 w-4 inline"} src={"/icons/SVG/pause.svg"}/>
+        </LinkButton>
+        <LinkButton href={"/#next"} className={""}>
+          <img className={"h-4 w-4 inline"} src={"/icons/SVG/next.svg"}/>
+        </LinkButton>
+      </li>
+      <li className={"p-1 my-2 md:inline hidden group-hover:inline"}>
+        <Link className={"text-white ld ld-secondary"} href={"/#prez-welcome"}>Acceuil</Link>
+      </li>
+      <li className={"p-1 my-2 md:inline hidden group-hover:inline"}>
+        <Link className={"text-white ld ld-secondary"} href={"/#prez-visit"}>Carte Interactive</Link>
+      </li>
+      <li className={"p-1 my-2 md:inline hidden group-hover:inline"}>
+        <Link className={"text-white ld ld-secondary"} href={"/#prez-animation"}>Animations</Link>
+      </li>
+      <li className={"p-1 my-2 md:inline hidden group-hover:inline"}>
+        <Link className={"text-white ld ld-secondary"} href={"/#prez-hosting"}>Hébergements</Link>
+      </li>
+      <li className={"p-1 my-2 md:inline hidden group-hover:inline"}><Link className={"text-white ld ld-secondary"}
+                                                                           href={"/#prez-travel"}>Voyage</Link></li>
       <li className={"p-1 my-2 md:inline hidden group-hover:inline"}></li>
-      <li className={"p-1 my-2 group md:inline hidden group-hover:inline"}><pre>Accessibilité</pre></li>
-      <li className={" md:inline hidden group-hover:inline"}><CheckBoxButton id={"reduces-motion"} className = {" bg-secondary-600 text-primary-50 p-2.5 pr-4 pl-4 rounded border border-secondary-300"}>Animation</CheckBoxButton>
+      <li className={"p-1 my-2 group md:inline hidden group-hover:inline"}>
+        <pre>Accessibilité</pre>
+      </li>
+      <li className={" md:inline hidden group-hover:inline"}><CheckBoxButton id={"reduces-motion"}
+                                                                             className={" bg-secondary-600 text-primary-50 p-2.5 pr-4 pl-4 rounded border border-secondary-300"}>Animation</CheckBoxButton>
       </li>
     </ul>
     {children}

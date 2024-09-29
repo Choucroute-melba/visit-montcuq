@@ -10,8 +10,10 @@ motionOption.addEventListener('change', (e) => {
 
 tour.style.position = "relative"
 tour.style.left = -10 + 'px'
-tour.style.top = -30 + 'px'
+tour.style.top = 20 + 'px'
 clocher.style.position = "relative"
+clocher.style.left = 0 + 'px'
+clocher.style.top = 40 + 'px'
 
 let tourPos = {x: -10 * 60, y: -30 * 60};
 let clocherPos = {x: 0, y: 0};

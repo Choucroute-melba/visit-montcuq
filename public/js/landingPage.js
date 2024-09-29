@@ -1,4 +1,3 @@
-
 const discover = document.getElementById('discover');
 const logo = document.getElementById("mainlogo")
 
@@ -6,6 +5,16 @@ const fabTravel = document.getElementById('fab-travel');
 const fabHosting = document.getElementById('fab-hosting');
 const fabAnim = document.getElementById('fab-animation');
 const fabVisit = document.getElementById('fab-visit');
+
+const linkTravel = document.querySelector('a[href="/#prez-travel"]');
+const linkHosting = document.querySelector('a[href="/#prez-hosting"]');
+const linkAnim = document.querySelector('a[href="/#prez-animation"]');
+const linkVisit = document.querySelector('a[href="/#prez-visit"]');
+const linkWelcome = document.querySelector('a[href="/#prez-welcome"]');
+
+const linkNext = document.querySelectorAll('a[href="/#next"]');
+const linkPrev = document.querySelectorAll('a[href="/#previous"]');
+const linkPause = document.querySelectorAll('a[href="/#pause"]');
 
 const prezTravel = document.getElementById('prez-travel');
 const prezHosting = document.getElementById('prez-hosting');
@@ -16,27 +25,29 @@ const prezWelcome = document.getElementById('prez-welcome');
 const _picturesShower = document.getElementById('pictures-shower');
 
 const colors = {
-    'prez-welcome': "theme('colors.secondary.100')",
-    'prez-visit': "theme('colors.primary.50')",
-    'prez-animation': "theme('colors.mqdimgreen.100')",
-    'prez-hosting': "theme('colors.mqpurple.100')",
-    'prez-travel': "theme('colros.red.200')"
+    'prez-welcome': '#cff8c7',
+    'prez-visit': "#fbf3d4",
+    'prez-animation': "#d3fba6",
+    'prez-hosting': "#ece5f8",
+    'prez-travel': "#f3cccb"
 }
 
-const prezs = [prezTravel, prezHosting, prezAnim, prezVisit, prezWelcome];
+const prezs = [prezWelcome, prezVisit, prezAnim, prezHosting, prezTravel];
 const fabs = [fabTravel, fabHosting, fabAnim, fabVisit];
+const links = [linkTravel, linkHosting, linkAnim, linkVisit, linkWelcome];
 
 let displayedPrez = prezWelcome;
 let focused = null;
+let paused = false;
 
 
-discover.addEventListener('mouseleave', (e) => {
+/*discover.addEventListener('mouseleave', (e) => {
     if(!focused) {
         showPrez(prezWelcome.id);
     } else {
         showPrez(focused.id);
     }
-})
+})*/
 
 logo.addEventListener('click', (e) => {
     focused = null
@@ -44,11 +55,55 @@ logo.addEventListener('click', (e) => {
 })
 
 fabs.forEach(fab => {
-    fab.addEventListener('mouseenter', onMouseEnterFAB);
-    fab.addEventListener('click', (e) => {
-        onFabClick(e, fab);
+    // fab.addEventListener('mouseenter', onMouseEnterFAB);
+    fab.addEventListener('click', (e) => { onFabClick(e, fab); });
+});
+
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPrez(link.href.split('#')[1]);
     });
 });
+
+linkNext.forEach((l) => {
+    l.addEventListener('click', (e) => {
+        e.preventDefault()
+        let next = prezs[(prezs.indexOf(displayedPrez) + 1) % prezs.length];
+        paused = true;
+        changePlayPauseImg()
+        showPrez(next.id);
+    });
+});
+
+linkPrev.forEach((l) => {
+    l.addEventListener('click', (e) => {
+        e.preventDefault()
+        let prev = prezs[(prezs.indexOf(displayedPrez) - 1 + prezs.length) % prezs.length];
+        paused = true;
+        changePlayPauseImg()
+        showPrez(prev.id);
+    });
+})
+
+linkPause.forEach((l) => {
+    l.addEventListener('click', (e) => {
+        e.preventDefault()
+        paused = !paused;
+        changePlayPauseImg();
+    });
+})
+
+window.setInterval(() => {
+    if(!paused) {
+        let next = prezs[(prezs.indexOf(displayedPrez) + 1) % prezs.length];
+        showPrez(next.id);
+    }
+}, 10000);
+
+
+showPrez("prez-welcome");
+
 
 function onMouseEnterFAB(e) {
     const targetedFab = fabs.find(fab => fab.id === e.target.id);
@@ -66,10 +121,10 @@ function showPrez(id) {
     console.log(_picturesShower, _picturesShower.style.backgroundColor)
     prezs.forEach(prez => {
         if(prez.id === id) {
-            prez.style.display = 'flex';
+            prez.scrollIntoView({behavior: "smooth", block: "end", inline: "start"});
             displayedPrez = prez;
-        } else {
-            prez.style.display = 'none';
+            paused = true;
+            changePlayPauseImg();
         }
     });
 }
@@ -87,6 +142,12 @@ function relatedPrez(fab) {
         default:
             return null;
     }
+}
+
+function changePlayPauseImg() {
+    linkPause.forEach((l) => {
+        l.children[0].src = paused ? "/icons/SVG/play.svg" : "/icons/SVG/pause.svg";
+    })
 }
 
 function isCursorOnFABZone(p, origin, radius) {

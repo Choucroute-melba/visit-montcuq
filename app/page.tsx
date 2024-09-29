@@ -8,25 +8,42 @@ import Link from "next/link";
 import twConfig from "../tailwind.config";
 import PicturesShower from "@/app/picturesShower";
 import FabsNav from "@/app/fabs";
+import LinkButton from "@/app/components/linkButton";
+import React from "react";
 const theme = twConfig.theme! as any
 
 export default function Home() {
 
     return (
         <>
-        <div className={"flex flex-col h-full"}>
+        <div className={"flex flex-col h-full w-full overflow-x-hidden overflow-y-visible"}>
             <PicturesShower/>
             <div className={"basis-1/3 flex flex-col justify-start items-center group/discover"} id={'discover'}>
-                <pre className={" z-50 md:hidden bg-primary-200"}>Cliquez pour découvrir Montcuq</pre>
                 <MQLogoFull className={"z-50 bg-primary-200 rounded-full shadow shadow-primary-200"} size={1.4}
                             id={"mainlogo"}/>
+                <div className={"flex flex-row my-2 space-x-1 md:hidden z-40"}>
+                    <LinkButton href={"/#previous"} className={""}>
+                        <img className={"h-5 w-5 inline"} src={"/icons/SVG/previous.svg"}/>
+                    </LinkButton>
+                    <LinkButton href={"/#pause"} className={""}>
+                        <img className={"h-5 w-5 inline"} src={"/icons/SVG/pause.svg"}/>
+                    </LinkButton>
+                    <LinkButton href={"/#next"} className={""}>
+                        <img className={"h-5 w-5 inline"} src={"/icons/SVG/next.svg"}/>
+                    </LinkButton>
+                </div>
                 <FabsNav/>
             </div>
-            <WelcomePrez className={"basis-2/3 z-20"}/>
-            <VisitPrez className={"basis-2/3 z-20"}/>
-            <AnimationPrez className={"basis-2/3 z-20"}/>
-            <HostingPrez className={"basis-2/3 z-20"}/>
-            <TravelPrez className={"basis-2/3 z-20"}/>
+            <div className={"snap-x snap-mandatory basis-2/3 z-20 overflow-x-scroll overflow-y-visible w-full [scrollbar-width:none]"}
+                 id={"#prez-mask"}>
+                <div className={"flex flex-row w-[500%] h-full overflow-y-visible"} id={"#prez-scroller"}>
+                    <WelcomePrez className={"h-full w-full snap-start overflow-y-visible"}/>
+                    <VisitPrez className={"h-full w-full snap-end"}/>
+                    <AnimationPrez className={"h-full w-full snap-end"}/>
+                    <HostingPrez className={"h-full w-full snap-end"}/>
+                    <TravelPrez className={"h-full w-full snap-end"}/>
+                </div>
+            </div>
         </div>
             <Script src={"/js/landingPage.js"}/>
             <Script src={"/js/landingpageIllusAnim.js"}/>
@@ -37,20 +54,28 @@ export default function Home() {
 export function WelcomePrez({className = ""}) {
     const colorName = "primary";
     return (
-        <div className={className + " flex flex-col justify-end"} id={"prez-welcome"}>
-            <div className={"prez-content absolute w-full h-3/4 flex flex-col justify-around items-center"}>
+        <div className={className + " flex flex-col justify-end relative"} id={"prez-welcome"}>
+            <div className={"prez-content absolute w-full h-full flex flex-col justify-around items-center"}>
                 <div className={"flex flex-row-reverse md:justify-start justify-center w-2/3 z-30 max-lg:mt-20"}>
-                    <Tour className={"drop-shadow-prez-illus shadow-primary-950 mb-10 stroke-primary-950"} />
-                    <Clocher className={"drop-shadow-prez-illus shadow-primary-950 mb-10 stroke-primary-950"} />
+                    <Tour className={"drop-shadow-prez-illus shadow-primary-950 mb-10 stroke-primary-950"}/>
+                    <Clocher className={"drop-shadow-prez-illus shadow-primary-950 mb-10 stroke-primary-950"}/>
                 </div>
                 <h1 className={"lg:mb-15 mb-5 p-1 text-center"}>
                     Bienvenue à <span
-                    className={"bg-secondary rounded-tr-full rounded-bl-full rounded-tl-lg pl-1 pr-1 mb-3"}>Montcuq</span>
+                    className={"bg-secondary rounded-tr-full rounded-bl-full rounded-tl-lg pl-1 pr-1 mb-3"}>Montcuq</span> !
                 </h1>
                 <div className={"text-primary-50 lg:mb-16 mb-10 text-md xl:w-3/6 lg:w-4/6 w-5/6"}>
                     <p>Visitez un village perché au coeur du Quercy-Blanc, un incontournable de la région !
-                        Profitez de Montcuq durant tout l'été au travers de balades bucoliques, historiques et des nombreuses animations proposées
+                        Profitez de Montcuq durant tout l'été au travers de balades bucoliques, historiques et des
+                        nombreuses animations proposées.
                     </p>
+                    <p className={"max-md:hidden"}>
+                        Terres de légendes et de traditions, vivez un séjour inoubliable au coeur de la campagne
+                        Française. N'oubliez pas que dèrrière son nom quelque peut comique, Montcuq cache des plaisirs et trésors qu'il
+                        ne tient qu'à vous d'explorer !
+                    </p>
+                    <p className={'mt-3 w-full flex flex-row justify-end'}><Link className={'ld ld-primary'} href={"/#next"}>Commencer
+                        l'exploration &gt;</Link></p>
                 </div>
             </div>
             <SVGBackground fillColors={[
@@ -66,8 +91,8 @@ export function WelcomePrez({className = ""}) {
 export function VisitPrez({className = ""}) {
     const colorName = "secondary";
     return (
-        <div className={className + " flex flex-col justify-end"} id={"prez-visit"} style={{display: "none"}}>
-            <div className={"prez-content absolute w-full h-3/4 flex flex-col justify-around items-center"}>
+        <div className={className + " flex flex-col justify-end relative"} id={"prez-visit"}>
+            <div className={"prez-content absolute w-full h-full flex flex-col justify-around items-center"}>
                 <div className={"flex flex-row-reverse justify-center lg:w-5/12 md:w-7/12 w-11/12 z-30"}>
                     <Image src={'/SVG/visit-illus.svg'} alt={"Illustration de la section visiter: représent des panneaux, un chemin et un point d'arrivée"}
                            width={600} height={500}
@@ -78,10 +103,16 @@ export function VisitPrez({className = ""}) {
                     className={"bg-primary rounded-tr-full rounded-bl-full rounded-tl-lg pl-1 pr-1 mb-3"}>Découvrez</span>
                 </h1>
                 <div className={"text-primary-50 text-md mb-10 lg:w-3/6 md:w-4/6 w-5/6"}>
-                    <p>Du village aux prairies, en passant par le chateau, l'église, le Bosquet et autre curiosités, Montcuq offre des possibilités
+                    <p>Du village aux prairies, en passant par le chateau, l'église, le marché et bien d'autres curiosités, Montcuq offre des possibilités
                         de découvertes uniques et taillées sur mesure aux goûts de chacun.
                     </p>
-                    <p className={'mt-3 w-full flex flex-row justify-end'}><Link className={'ld ld-secondary'} href={"#"}>Carte interactive &gt;</Link></p>
+                    <p  className={"max-md:hidden"}>
+                        Attention toutefois à ne pas vous perdre dans le Bosquet, les anciens racontent de drôles d'histoires à son sujet...
+                    </p>
+                    <p className={'mt-3 w-full flex flex-row justify-end'}>
+                        <Link className={'ld ld-secondary'} href={"#"}>Carte interactive</Link>
+                        <Link className={'ld ld-secondary ml-3'} href={"/#next"}>Suivant &gt;</Link>
+                    </p>
                 </div>
             </div>
             <SVGBackground fillColors={[
@@ -96,8 +127,8 @@ export function VisitPrez({className = ""}) {
 export function AnimationPrez({className = ""}) {
     const color = "mqpink"
     return (
-        <div className={className + " flex flex-col justify-end"} id={"prez-animation"} style={{display: "none"}}>
-            <div className={"prez-content absolute w-full h-3/4 flex flex-col justify-around items-center"}>
+        <div className={className + " flex flex-col justify-end relative"} id={"prez-animation"}>
+            <div className={"prez-content absolute w-full h-full flex flex-col justify-around items-center"}>
                 <div className={"flex flex-row justify-center self-end mr-40 sm:w-2/6 w-3/6 z-30"}>
                     <Image src={'/SVG/animation-illus.svg'}
                            alt={"Illustration de la section visiter: représent des panneaux, un chemin et un point d'arrivée"}
@@ -111,7 +142,10 @@ export function AnimationPrez({className = ""}) {
                     <p>Durant toute la saison, le comité des fêtes de Montcuq vous propose un florilège d'animations et d'évènements
                         dans tout le village. Musique, théâtre, spectacles, gastronomie ou traditions, il y en a pour tous les goûts !
                     </p>
-                    <p className={'mt-3 w-full flex flex-row justify-end'}><Link className={"ld ld-mqpink"} href={"#"}>Voir la programmation &gt;</Link></p>
+                    <p className={'mt-3 w-full flex flex-row justify-end'}>
+                        <Link className={"ld ld-mqpink"} href={"#"}>Voir la programmation</Link>
+                        <Link className={'ld ld-mqpink ml-3'} href={"/#next"}>Suivant &gt;</Link>
+                    </p>
                 </div>
             </div>
             <SVGBackground fillColors={[
@@ -126,8 +160,8 @@ export function AnimationPrez({className = ""}) {
 export function HostingPrez({className = ""}) {
     const colorName = "mqaqua";
     return (
-        <div className={className + " flex flex-col justify-end"} id={"prez-hosting"} style={{display: "none"}}>
-            <div className={"prez-content absolute w-full h-3/4 flex flex-col justify-around items-center"}>
+        <div className={className + " flex flex-col justify-end relative"} id={"prez-hosting"}>
+            <div className={"prez-content absolute w-full h-full flex flex-col justify-around items-center"}>
                 <div className={"flex flex-row-reverse justify-start w-2/3 z-30"}>
                     <Image src={'/SVG/hosting-illus.svg'}
                            alt={"Illustration de la section visiter: représent des panneaux, un chemin et un point d'arrivée"}
@@ -143,7 +177,10 @@ export function HostingPrez({className = ""}) {
                     <p>Profitez d'une multitude d'hébergement typiques, rustiques ou moderne pour tous les budgets,
                         du camping à l'hôtel 5 étoiles et le tout dans un cadre enchanteur.
                     </p>
-                    <p className={'mt-3 w-full flex flex-row justify-end'}><Link className={"ld ld-mqaqua"} href={"#"}>Réserver &gt;</Link></p>
+                    <p className={'mt-3 w-full flex flex-row justify-end'}>
+                        <Link className={"ld ld-mqaqua"} href={"#"}>Réserver</Link>
+                        <Link className={'ld ld-mqaqua ml-3'} href={"/#next"}>Suivant &gt;</Link>
+                    </p>
                 </div>
             </div>
             <SVGBackground fillColors={[
@@ -158,8 +195,8 @@ export function HostingPrez({className = ""}) {
 export function TravelPrez({className = ""}) {
     const colorName = "mqviolet";
     return (
-        <div className={className + " flex flex-col justify-end"} id={"prez-travel"} style={{display: "none"}}>
-            <div className={"prez-content absolute w-full h-3/4 flex flex-col justify-around items-center"}>
+        <div className={className + " flex flex-col justify-end relative"} id={"prez-travel"}>
+            <div className={"prez-content absolute w-full h-full flex flex-col justify-around items-center"}>
                 <div className={"flex flex-row-reverse justify-center md:w-8/12 w-11/12 z-30"}>
                     <Image src={'/SVG/travel-illus.svg'}
                            alt={"Illustration de la section voyager: Un ticket de train suivit d'une locomotive"}
@@ -175,8 +212,10 @@ export function TravelPrez({className = ""}) {
                     <p>Pour venir à montcuq, le train est la meilleure des solutions ! Profitez d'un voyage calme et rapide
                         à travers la France avant d'arriver à la destination de vos rêves.
                     </p>
-                    <p className={'mt-3 w-full flex flex-row justify-end'}><Link className={"ld ld-mqviolet"}
-                                                                                 href={"#"}>Réserver &gt;</Link></p>
+                    <p className={'mt-3 w-full flex flex-row justify-end'}>
+                        <Link className={"ld ld-mqviolet"} href={"#"}>Réserver</Link>
+                        <Link className={'ld ld-mqviolet ml-3'} href={"/#next"}>Retour au début &gt;</Link>
+                    </p>
                 </div>
             </div>
             <SVGBackground fillColors={[
